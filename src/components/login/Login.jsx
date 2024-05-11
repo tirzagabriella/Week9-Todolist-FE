@@ -8,6 +8,7 @@ import {
   signInWithGoogle,
 } from "../../services/firebase-auth";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -15,6 +16,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
+  const [cookies, setCookie] = useCookies(["user"]);
   const navigate = useNavigate();
 
   const navToHome = () => {
@@ -43,10 +45,13 @@ export default function Login() {
   //Handle Login API Integration here
   const authenticateUser = async () => {
     try {
-      await logInWithEmailAndPassword(
+      const res = await logInWithEmailAndPassword(
         loginState["email"],
         loginState["password"]
       );
+
+      setCookie("userToken", res.user.accessToken, { path: "/" });
+
       navToHome();
     } catch (err) {
       console.error(err);
