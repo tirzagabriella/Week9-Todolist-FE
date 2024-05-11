@@ -5,6 +5,7 @@ import Modal from "../../components/dashboard/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
+import { useCookies } from "react-cookie";
 
 // import { db } from "../firebase";
 // import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -23,6 +24,8 @@ dayjs.extend(timezone);
 
 export default function Home() {
   const { t, i18n } = useTranslation(); //for language preferences
+  const [cookies, setCookie] = useCookies(["lang"]);
+
   const [todos, setTodos] = useState([]);
   const [shownTodos, setShownTodos] = useState([]);
   const [newItem, setNewItem] = useState("");
@@ -81,12 +84,17 @@ export default function Home() {
         fetchProfilePic(user.uid);
         setLoggedInUser(user);
         populateTodolist(user);
+        i18n.changeLanguage(cookies.lang);
       } else {
         setProfilePic(null);
         onSignOut();
       }
     });
   }, []);
+
+  useEffect(() => {
+    setCookie("lang", i18n.language, { path: "/" });
+  }, [t]);
 
   useEffect(() => {
     let filteredTodos = todos;
