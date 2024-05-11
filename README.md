@@ -1,0 +1,10 @@
+## Backend api list
+
+| URL Endpoint               | API Method | API's Purpose                                | Request Body                                                                                  | Response Body                                              |
+| -------------------------- | ---------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `/`                        | GET        | Welcome message for the API                  | None                                                                                          | `{"message": "Welcome to a todolist example of FastAPI!"}` |
+| `/todos/all/{user_id}`     | GET        | Get all todos by user ID                     | user_id: str                                                                                  | List of all todos or an error message                      |
+| `/todos/{task}`            | GET        | Get todos by task                            | task: str                                                                                     | Single todo item or error message                          |
+| `/todos/create`            | POST       | Post todos (create new todos object in list) | `{"id": str, "task": str, "completed": bool, "datetime": str, "userId": str`                  | New todo item or error message                             |
+| `/todos/edit/{todo_id}`    | PUT        | Update todos                                 | todo_id: str and `{"id": str, "task": str, "completed": bool, "datetime": str, "userId": str` | Updated todo item or error message                         |
+| `/todos/delete/{todos_id}` | DELETE     | Delete todos by id                           | todos_id: str                                                                                 | Success message or error message                           |
