@@ -1,18 +1,40 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useTranslation } from "react-i18next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Dropdown(props) {
+  const { t, i18n } = useTranslation();
+  const all = t("home.all");
+  const incomplete = t("home.incomplete");
+  const complete = t("home.complete");
+
   const { filterStatus, setFilterStatus } = props;
+  const [filterText, setFilterText] = useState(all);
+
+  useEffect(() => {
+    switch (filterStatus) {
+      case "All":
+        setFilterText(all);
+        break;
+      case "Complete":
+        setFilterText(complete);
+        break;
+      case "Incomplete":
+        setFilterText(incomplete);
+        break;
+    }
+  }, [filterStatus, t]);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-rose-300 px-3 py-2 text-sm font-semibold text-rose-100 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-pink-60">
-          {filterStatus}
+          {filterText}
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-pink-600"
             aria-hidden="true"
@@ -40,7 +62,7 @@ export default function Dropdown(props) {
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  All
+                  {t("home.all")}
                 </a>
               )}
             </Menu.Item>
@@ -53,7 +75,7 @@ export default function Dropdown(props) {
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Incomplete
+                  {t("home.incomplete")}
                 </a>
               )}
             </Menu.Item>
@@ -66,7 +88,7 @@ export default function Dropdown(props) {
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Complete
+                  {t("home.complete")}
                 </a>
               )}
             </Menu.Item>

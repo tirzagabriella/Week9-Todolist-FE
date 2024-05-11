@@ -1,0 +1,15 @@
+{
+    "home": {
+        "hi": "こんにちは",
+        "myprofile": "私のプロフィール",
+        "signout": "サインアウト",
+        "newitem": "新商品",
+        "add": "追加",
+        "todolist":"やることリスト",
+        "all": "全て",
+        "incomplete": "不完全な",
+        "complete": "完了",
+        "edit": "編集",
+        "delete": "消去"
+    }
+}

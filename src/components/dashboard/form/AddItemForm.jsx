@@ -1,12 +1,15 @@
 import React from "react";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { useTranslation } from "react-i18next";
 
 export default function AddItemForm(props) {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="center-container">
       <form className="new-item-form">
         <div className="form-row">
-          <label htmlFor="item">New Item</label>
+          <label htmlFor="item">{t("home.newitem")}</label>
           <input
             type="text"
             id="item"
@@ -27,7 +30,7 @@ export default function AddItemForm(props) {
           className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={props.handleSubmit}
         >
-          Add
+          {t("home.add")}
         </button>
       </form>
     </div>

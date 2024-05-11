@@ -4,6 +4,7 @@ import ToDoList from "../../components/dashboard/list/ToDoList";
 import Modal from "../../components/dashboard/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 // import { db } from "../firebase";
 // import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -21,6 +22,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 export default function Home() {
+  const { t, i18n } = useTranslation(); //for language preferences
   const [todos, setTodos] = useState([]);
   const [shownTodos, setShownTodos] = useState([]);
   const [newItem, setNewItem] = useState("");
@@ -31,6 +33,10 @@ export default function Home() {
   const [datetimeState, setdatetimeState] = useState(dayjs());
   const [loggedInUser, setLoggedInUser] = useState();
   const [profilePic, setProfilePic] = useState(null);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const navigate = useNavigate();
 
@@ -215,17 +221,34 @@ export default function Home() {
           onClickUser={() => navToProfile()}
         />
         <div className="flex">
+          <div className="language-container">
+            <button
+              class="m-4"
+              type="button"
+              onClick={() => changeLanguage("jp")}
+            >
+              日本語
+            </button>
+            <button
+              class="m-4"
+              type="button"
+              onClick={() => changeLanguage("en")}
+            >
+              en
+            </button>
+          </div>
+
           <div
             className="flex items-center cursor-pointer m-4"
             onClick={() => navToProfile()}
           >
-            <span>My Profile</span>
+            <span>{t("home.myprofile")}</span>
           </div>
           <div
             className="flex items-center cursor-pointer m-4"
             onClick={() => onSignOut()}
           >
-            <span>Sign Out</span>
+            <span>{t("home.signout")}</span>
           </div>
         </div>
       </div>

@@ -1,0 +1,15 @@
+{
+    "home": {
+        "hi": "Hi",
+        "myprofile": "My Profile",
+        "signout": "Sign Out",
+        "newitem": "New Item",
+        "add": "Add",
+        "todolist": "Todo List",
+        "all": "All",
+        "incomplete": "Incomplete",
+        "complete": "Complete",
+        "edit": "Edit",
+        "delete": "Delete"
+    }
+}

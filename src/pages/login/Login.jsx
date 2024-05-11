@@ -26,11 +26,11 @@ export default function LoginPage() {
             d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"
           />
         </svg>
-        <span className="mx-2">Back to Starting Page</span>
+        <span className="mx-2">{t("Back to Starting Page")}</span>
       </div>
       <Header
-        heading="Login to your account"
-        paragraph="Don't have an account yet? "
+        heading={t("Login to your account")}
+        paragraph={t("Don't have an account yet? ")}
         linkName="Signup"
         linkUrl="/signup"
       />

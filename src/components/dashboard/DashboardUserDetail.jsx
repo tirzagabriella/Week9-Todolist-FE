@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const DashboardUserDetail = (props) => {
+  const { t, i18n } = useTranslation();
   const { profilePic, user, onClickUser } = props;
 
   return (
@@ -7,7 +10,9 @@ export const DashboardUserDetail = (props) => {
       onClick={() => onClickUser()}
     >
       <img className="user-pic" src={profilePic} alt="Profile" />
-      <span className="px-4">Hi {user?.displayName}!</span>
+      <span className="px-4">
+        {t("home.hi")} {user?.displayName}!
+      </span>
     </div>
   );
 };

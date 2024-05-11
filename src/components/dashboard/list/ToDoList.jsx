@@ -1,11 +1,14 @@
 import React from "react";
 import Dropdown from "../dropdown/Dropdown";
+import { useTranslation } from "react-i18next";
 
 export default function ToDoList(props) {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="center-container">
       <div className="flex items-center justify-between">
-        <h1 className="header">Todo List</h1>
+        <h1 className="header">{t("home.todolist")}</h1>
         <Dropdown
           filterStatus={props.filterStatus}
           setFilterStatus={props.setFilterStatus}
@@ -37,13 +40,13 @@ export default function ToDoList(props) {
                       className="btn"
                       onClick={() => props.editTodo(todo.id, todo.title)}
                     >
-                      Edit
+                      {t("home.edit")}
                     </button>
                     <button
                       className="btn btn-danger ml-2 bg-red-400"
                       onClick={() => props.deleteTodo(todo.id)}
                     >
-                      Delete
+                      {t("home.delete")}
                     </button>
                   </div>
                 </div>
