@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loginFields } from "../../constants/formFields";
 import FormAction from "../../components/formextra/FormAction";
 // import FormExtra from "../../components/formextra/FormExtra";
@@ -8,6 +8,7 @@ import {
   signInWithGoogle,
 } from "../../services/firebase-auth";
 import { useNavigate } from "react-router-dom";
+import { checkSession, createSession } from "../../services/todo";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -16,6 +17,10 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    checkSession();
+  }, []);
 
   const navToHome = () => {
     navigate("/home"); // Redirect to the login page instead of the home page
@@ -47,6 +52,8 @@ export default function Login() {
         loginState["email"],
         loginState["password"]
       );
+
+      createSession(loginState["email"]);
 
       navToHome();
     } catch (err) {

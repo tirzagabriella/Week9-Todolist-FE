@@ -1,4 +1,9 @@
 {
+    "login": {
+        "backtostart": "Back to Starting Page",
+        "logintoyouraccount": "Login to your account",
+        "doesnthaveaccount": "Don't have an account yet?"
+    },
     "home": {
         "hi": "Hi",
         "myprofile": "My Profile",

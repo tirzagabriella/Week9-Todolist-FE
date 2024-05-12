@@ -15,7 +15,14 @@ import { useCookies } from "react-cookie";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { auth, logout, st } from "../../services/firebase-auth";
-import { addTask, deleteTask, editTask, getTasks } from "../../services/todo";
+import {
+  addTask,
+  checkSession,
+  deleteSession,
+  deleteTask,
+  editTask,
+  getTasks,
+} from "../../services/todo";
 import { DashboardUserDetail } from "../../components/dashboard/DashboardUserDetail";
 import { getDownloadURL, ref } from "firebase/storage";
 
@@ -216,6 +223,7 @@ export default function Home() {
   }
 
   const onSignOut = () => {
+    deleteSession();
     logout();
     navtoSplash();
   };

@@ -1,4 +1,9 @@
 {
+    "login": {
+        "backtostart": "開始ページに戻る",
+        "logintoyouraccount": "あなたのアカウントにログイン",
+        "doesnthaveaccount": "まだアカウントをお持ちでない場合は、"
+    },
     "home": {
         "hi": "こんにちは",
         "myprofile": "私のプロフィール",

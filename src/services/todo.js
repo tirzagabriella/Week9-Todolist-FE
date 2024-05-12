@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true
+
 export const getTasks = async (user) => {
   try {
     const uid = user.uid;
@@ -55,4 +57,33 @@ export const deleteTask = async (taskId) => {
   } catch (error) {
     console.log("Error deleting task : ", error)
   }
-}
+};
+
+export const createSession = async (name) => {
+  try {
+    axios.post(`http://localhost:8000/create_session/${name}`).catch((error) => {
+      console.error("There was an error adding the todo: ", error);
+    });
+  } catch (error) {
+    console.log("Error adding task : ", error);
+  }
+};
+
+export const checkSession = async () => {
+  try {
+    return axios.get(`http://localhost:8000/whoami`)
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const deleteSession = async () => {
+  try {
+    axios.post("http://localhost:8000/delete_session").catch((error) => {
+      console.error("There was an error adding the todo: ", error);
+    });
+  } catch (error) {
+    console.log("Error adding task : ", error);
+  }
+};
