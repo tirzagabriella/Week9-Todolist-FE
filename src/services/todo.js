@@ -1,11 +1,11 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 export const getTasks = async (user) => {
   try {
     const uid = user.uid;
-    return axios.get(`http://localhost:8000/todos/all/${uid}`)
+    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/todos/all/${uid}`)
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -21,7 +21,7 @@ export const addTask = async (task, datetime, uid) => {
       user_id: uid,
     };
 
-    axios.post("http://localhost:8000/todos/create", newTodo).catch((error) => {
+    axios.post("https://sample-a6tfftdg5a-as.a.run.app/todos/create", newTodo).catch((error) => {
       console.error("There was an error adding the todo: ", error);
     });
   } catch (error) {
@@ -38,7 +38,7 @@ export const editTask = async (taskId, title, completed) => {
     }
 
     axios
-      .put(`http://localhost:8000/todos/edit/${taskId}`, payload)
+      .put(`https://sample-a6tfftdg5a-as.a.run.app/todos/edit/${taskId}`, payload)
       .catch((error) => {
         console.error("There was an error updating the todo: ", error);
       });
@@ -50,7 +50,7 @@ export const editTask = async (taskId, title, completed) => {
 export const deleteTask = async (taskId) => {
   try {
     axios
-      .delete(`http://localhost:8000/todos/delete/${taskId}`)
+      .delete(`https://sample-a6tfftdg5a-as.a.run.app/todos/delete/${taskId}`)
       .catch((error) => {
         console.error("There was an error updating the todo: ", error);
       });
@@ -61,7 +61,9 @@ export const deleteTask = async (taskId) => {
 
 export const createSession = async (name) => {
   try {
-    axios.post(`http://localhost:8000/create_session/${name}`).catch((error) => {
+    axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`, {
+      withCredentials: true
+  }).catch((error) => {
       console.error("There was an error adding the todo: ", error);
     });
   } catch (error) {
@@ -71,7 +73,9 @@ export const createSession = async (name) => {
 
 export const checkSession = async () => {
   try {
-    return axios.get(`http://localhost:8000/whoami`)
+    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/whoami`, {
+      withCredentials: true
+  })
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -80,7 +84,9 @@ export const checkSession = async () => {
 
 export const deleteSession = async () => {
   try {
-    axios.post("http://localhost:8000/delete_session").catch((error) => {
+    axios.post("https://sample-a6tfftdg5a-as.a.run.app/delete_session", {
+      withCredentials: true
+  }).catch((error) => {
       console.error("There was an error adding the todo: ", error);
     });
   } catch (error) {
