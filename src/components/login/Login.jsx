@@ -58,7 +58,7 @@ export default function Login() {
       createSession(loginState["email"])
         .then((res) => {
           console.log("Got session id: ", res.data.session_id_hash);
-          setCookie(res.data.session_id_hash);
+          setCookie("cookie", res.data.session_id_hash, { path: "/" });
         })
         .catch((error) => {
           console.error("There was an error creating the session: ", error);
