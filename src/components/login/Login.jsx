@@ -9,6 +9,7 @@ import {
 } from "../../services/firebase-auth";
 import { useNavigate } from "react-router-dom";
 import { checkSession, createSession } from "../../services/todo";
+import { useCookies } from "react-cookie";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -16,6 +17,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
+  const [cookies, setCookie] = useCookies(["cookie"]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,7 +55,14 @@ export default function Login() {
         loginState["password"]
       );
 
-      createSession(loginState["email"]);
+      createSession(loginState["email"])
+        .then((res) => {
+          console.log("Got session id: ", res.data.session_id_hash);
+          setCookie(res.data.session_id_hash);
+        })
+        .catch((error) => {
+          console.error("There was an error creating the session: ", error);
+        });
 
       navToHome();
     } catch (err) {
