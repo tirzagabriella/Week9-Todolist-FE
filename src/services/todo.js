@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true
 
 export const getTasks = async (user) => {
   try {
@@ -61,9 +61,7 @@ export const deleteTask = async (taskId) => {
 
 export const createSession = async (name) => {
   try {
-    axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`, {
-      withCredentials: true
-  }).catch((error) => {
+    axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`).catch((error) => {
       console.error("There was an error adding the todo: ", error);
     });
   } catch (error) {
@@ -73,9 +71,7 @@ export const createSession = async (name) => {
 
 export const checkSession = async () => {
   try {
-    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/whoami`, {
-      withCredentials: true
-  })
+    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/whoami`)
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -84,9 +80,7 @@ export const checkSession = async () => {
 
 export const deleteSession = async () => {
   try {
-    axios.post("https://sample-a6tfftdg5a-as.a.run.app/delete_session", {
-      withCredentials: true
-  }).catch((error) => {
+    axios.post("https://sample-a6tfftdg5a-as.a.run.app/delete_session").catch((error) => {
       console.error("There was an error adding the todo: ", error);
     });
   } catch (error) {
