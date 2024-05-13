@@ -61,8 +61,10 @@ export const deleteTask = async (taskId) => {
 
 export const createSession = async (name) => {
   try {
-    axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`).catch((error) => {
-      console.error("There was an error adding the todo: ", error);
+    axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`).then((res)=>{
+      console.log("Got session id: ", res.data.session_id_hash)
+    }).catch((error) => {
+      console.error("There was an error creating the session: ", error);
     });
   } catch (error) {
     console.log("Error adding task : ", error);
@@ -81,7 +83,7 @@ export const checkSession = async () => {
 export const deleteSession = async () => {
   try {
     axios.post("https://sample-a6tfftdg5a-as.a.run.app/delete_session").catch((error) => {
-      console.error("There was an error adding the todo: ", error);
+      console.error("There was an error deleting the session: ", error);
     });
   } catch (error) {
     console.log("Error adding task : ", error);
