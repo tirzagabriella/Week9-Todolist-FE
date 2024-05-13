@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true
 export const getTasks = async (user) => {
   try {
     const uid = user.uid;
-    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/todos/all/${uid}`)
+    return axios.get(`https://sample-a6tfftdg5a-as.a.run.app/todos/all/${uid}`, {withCredentials: true})
   } catch (error) {
     console.log(error);
     throw new Error(error);
