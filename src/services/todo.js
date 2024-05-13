@@ -2,10 +2,6 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true
 
-export const setAxiosCookie = (value) => {
-  axios.defaults.headers.common['Cookie'] = value
-}
-
 export const getTasks = async (user) => {
   try {
     const uid = user.uid;
@@ -66,6 +62,9 @@ export const deleteTask = async (taskId) => {
 export const createSession = async (name) => {
   try {
     return axios.post(`https://sample-a6tfftdg5a-as.a.run.app/create_session/${name}`)
+    .catch((error) => {
+      console.error("There was an error creating the session: ", error);
+    });
   } catch (error) {
     console.log("Error adding task : ", error);
   }

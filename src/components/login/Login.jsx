@@ -8,11 +8,7 @@ import {
   signInWithGoogle,
 } from "../../services/firebase-auth";
 import { useNavigate } from "react-router-dom";
-import {
-  checkSession,
-  createSession,
-  setAxiosHeader,
-} from "../../services/todo";
+import { checkSession, createSession } from "../../services/todo";
 import { useCookies } from "react-cookie";
 
 const fields = loginFields;
@@ -59,15 +55,7 @@ export default function Login() {
         loginState["password"]
       );
 
-      createSession(loginState["email"])
-        .then((res) => {
-          console.log("Got session id: ", res.data.session_id_hash);
-          setCookie("cookie", res.data.session_id_hash, { path: "/" });
-          setAxiosCookie("cookie=" + res.data.session_id_hash);
-        })
-        .catch((error) => {
-          console.error("There was an error creating the session: ", error);
-        });
+      createSession(loginState["email"]);
 
       navToHome();
     } catch (err) {
