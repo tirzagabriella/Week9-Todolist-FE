@@ -2,8 +2,8 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true
 
-export const setAxiosHeader = (name, value) => {
-  axios.defaults.headers.common[name] = value
+export const setAxiosCookie = (value) => {
+  axios.defaults.headers.common['Cookie'] = value
 }
 
 export const getTasks = async (user) => {

@@ -63,7 +63,7 @@ export default function Login() {
         .then((res) => {
           console.log("Got session id: ", res.data.session_id_hash);
           setCookie("cookie", res.data.session_id_hash, { path: "/" });
-          setAxiosHeader("Cookie", res.data.session_id_hash);
+          setAxiosCookie("cookie=" + res.data.session_id_hash);
         })
         .catch((error) => {
           console.error("There was an error creating the session: ", error);
