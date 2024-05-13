@@ -2,6 +2,10 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true
 
+export const setAxiosHeader = (name, value) => {
+  axios.defaults.headers.common[name] = value
+}
+
 export const getTasks = async (user) => {
   try {
     const uid = user.uid;
